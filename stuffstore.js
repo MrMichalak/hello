@@ -8,17 +8,3 @@ try {
   } catch (err) {
     console.error(err);
   }
-  const getData = async () => {
-    try {
-      const response = await fetch('test.txt'); // wysyla request
-  
-      if (response.ok) {                              //
-        const jsonResponse = await response.json ();  // obsługuje response jesli sie powiedzie
-        // kod do wykonania z jsonResponse            //
-      }
-      throw new Error('Request failed!'); 
-    
-    } catch (error) {                     //obsługuje response jesli sie nie powiedzie
-      console.log (error);                //
-    }
-  }
