@@ -9,8 +9,9 @@ const jsonObject = JSON.parse(data);
     console.error(err);
   }
 
-  fetch('test.txt')
+  fetch('test.txt')   // wysyla request
   .then(response => { // wysyla request
+    
   if (response.ok) {        //
     return response.json(); //  convertuje rsponse to JSON
   }                         //
