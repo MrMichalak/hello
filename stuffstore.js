@@ -1,3 +1,4 @@
+
 try {
 const fs = require('fs');
 const url = 'url.json';
@@ -8,7 +9,8 @@ const jsonObject = JSON.parse(data);
     console.error(err);
   }
 
-  fetch('test.txt').then(response => { // wysyla request
+  fetch('test.txt')
+  .then(response => { // wysyla request
   if (response.ok) {        //
     return response.json(); //  convertuje rsponse to JSON
   }                         //
