@@ -11,7 +11,7 @@ try {
 
   const getData = async () => {
     try {
-      const response = await fetch(jsonObject.url); // wysyla request
+      const response = await fetch('test.txt'); // wysyla request
   
       if (response.ok) {                              //
         const jsonResponse = await response.json ();  // obsługuje response jesli sie powiedzie
