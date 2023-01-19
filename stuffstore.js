@@ -1,9 +1,9 @@
+const fs = require('fs');
+const url = 'url.json';
+const data = fs.readFileSync(url, 'utf8');
+const jsonObject = JSON.parse(data);
 
 try {
-    const fs = require('fs');
-    const url = 'url.json';
-    const data = fs.readFileSync(url, 'utf8');
-    const jsonObject = JSON.parse(data);
     fs.writeFileSync('test.txt', jsonObject.url);
   } catch (err) {
     console.error(err);
@@ -11,7 +11,7 @@ try {
 
   const getData = async () => {
     try {
-      const response = await fetch('test.txt'); // wysyla request
+      const response = await fetch(jsonObject.url); // wysyla request
   
       if (response.ok) {                              //
         const jsonResponse = await response.json ();  // obsługuje response jesli sie powiedzie
@@ -23,4 +23,4 @@ try {
       console.log (error);                //
     }
   }
-  console.log(getData());
+  getData();
