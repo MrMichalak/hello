@@ -1,4 +1,3 @@
-
 const fs = require("fs");
 const url = "url.json";
 const data = fs.readFileSync(url, "utf8");
@@ -9,20 +8,19 @@ try {
   console.error(err);
 }
 
-fetch(jsonObject.url) // wysyla request
-  .then(
-    (response) => {
-      
-      if (response.ok) {
-        //
-        return response.json()//  convertuje rsponse to JSON
-      } //
+fetch(jsonObject.url)
+  .then(function (response) {
+    // The API call was successful!
+    return response.text();
+  })
+  .then(function (html) {
+    // This is the HTML from our response as a text string
+    //console.log(html);
+  })
 
-      throw new Error("Request failed!"); //
-    },
-    (networkError) => console.log(networkError.message) // obsluga error'a
-  )
-  .then((jsonResponse) => {
-    
-    // kod do wykonania z jsonResponse
+  .catch(function (err) {
+    // If there was an error
+    console.warn("Something went wrong.", err);
   });
+
+// convert the new txt to html and save into a file index.html.
