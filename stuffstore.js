@@ -8,19 +8,21 @@ try {
   console.error(err);
 }
 
+// The API call
 fetch(jsonObject.url)
-  .then((response) =>
-    // The API call was successful!
-    response.text()
-  )
+  .then((response) => response.text())
+
+  // This is the HTML from our response as a text string
   .then((html) => {
-    // This is the HTML from our response as a text string
-    //console.log(html);
+    return html;
   })
 
+  //saving html to index.html
+  .then((html) => {
+    fs.writeFileSync("index.html", html);
+  })
+
+  // If there was an error
   .catch((err) => {
-    // If there was an error
     console.warn("Something went wrong.", err);
   });
-
-// next: convert the new txt to html and save into a file index.html.
