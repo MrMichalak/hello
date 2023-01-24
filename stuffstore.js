@@ -9,18 +9,18 @@ try {
 }
 
 fetch(jsonObject.url)
-  .then(function (response) {
+  .then((response) =>
     // The API call was successful!
-    return response.text();
-  })
-  .then(function (html) {
+    response.text()
+  )
+  .then((html) => {
     // This is the HTML from our response as a text string
     //console.log(html);
   })
 
-  .catch(function (err) {
+  .catch((err) => {
     // If there was an error
     console.warn("Something went wrong.", err);
   });
 
-// convert the new txt to html and save into a file index.html.
+// next: convert the new txt to html and save into a file index.html.
