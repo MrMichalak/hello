@@ -1,24 +1,29 @@
+const fs = require("fs");
+const url = "url.json";
+const data = fs.readFileSync(url, "utf8");
+const jsonObject = JSON.parse(data);
 
 try {
-const fs = require('fs');
-const url = 'url.json';
-const data = fs.readFileSync(url, 'utf8');
-const jsonObject = JSON.parse(data);
-    fs.writeFileSync('test.txt', jsonObject.url);
-  } catch (err) {
-    console.error(err);
-  }
+  fs.writeFileSync("test.txt", jsonObject.url);
+} catch (err) {
+  console.error(err);
+}
 
-  fetch('test.txt')   // wysyla request
-  .then(response => { // wysyla request
-    
-  if (response.ok) {        //
-    return response.json(); //  convertuje rsponse to JSON
-  }                         //
+// The API call
+fetch(jsonObject.url)
+  .then((response) => response.text())
 
-  throw new Error('Request failed!');                 //
-}, networkError => console.log(networkError.message)  // obsluga error'a
+  // This is the HTML from our response as a text string
+  .then((html) => {
+    return html;
+  })
 
-).then(jsonResponse => {                            
-   // kod do wykonania z jsonResponse
-});
+  //saving html to index.html
+  .then((html) => {
+    fs.writeFileSync("index.html", html);
+  })
+
+  // If there was an error
+  .catch((err) => {
+    console.warn("Something went wrong.", err);
+  });
