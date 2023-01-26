@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require("fs").promises;
 
 // const run = async () => {
 // 	// The API call
@@ -22,25 +22,30 @@ const fs = require('fs');
 // };
 
 const getHtml = async (url) => {
-	// use fetch and await response
-	return 'html...';
+  // use fetch and await response
+  const response = await fetch(url);
+  if (response.status !== 200) {
+    throw Error("Unsuccessful response");
+  }
+  const html = await response.text();
+  return html;
 };
 
 const handleHtml = async (html) => {
-	// do smth with fetched html
+  await fs.writeFile("index.html", html);
 };
 
 const run = async () => {
-	const url = 'url.json';
-	const data = fs.readFileSync(url, 'utf8');
-	const jsonObject = JSON.parse(data);
+  const url = "url.json";
+  const data = await fs.readFile(url, "utf8");
+  const jsonObject = JSON.parse(data);
 
-	const html = await getHtml(jsonObject.url);
-	await handleHtml(html);
+  const html = await getHtml(jsonObject.url);
+  await handleHtml(html);
 };
 
 (async () => {
-	console.log('Started execution');
-	await run();
-	console.log('Finished execution');
+  console.log("Started execution");
+  await run();
+  console.log("Finished execution");
 })();
